@@ -14,9 +14,8 @@ pipeline{
                 script{
                     withMaven (maven:"mavenTool")
                     {
-                        sg(script:"""
-                        mvn clean package
-                        """)
+                        def output=sh(script:"""mvn clean package""", returnStatus:true)
+                        echo "${output}"
                     }
                 }
             }
